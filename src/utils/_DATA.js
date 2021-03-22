@@ -109,6 +109,8 @@ let answers = {
   }
 }
 
+let signedInUser = "";
+
 function generateUID() {
   return Math.random().toString(36).substring(2, 15) + Math.random().toString(36).substring(2, 15)
 }
@@ -133,6 +135,14 @@ export function _getAnswers() {
   return new Promise((res, rej) => {
     setTimeout(() => res({
       ...answers
+    }), 1000)
+  })
+}
+
+export function _getSignedInUser() {
+  return new Promise((res, rej) => {
+    setTimeout(() => res({
+      signedInUser
     }), 1000)
   })
 }
@@ -166,10 +176,10 @@ export function _saveQuestion(question) {
   })
 }
 
-export function _saveQuestionAnswer({
-  authedUser,
-  qid,
-  answer
+export function _saveAnswer({
+  userId,
+  questionId,
+  vote
 }) {
   return new Promise((res, rej) => {
     setTimeout(() => {
@@ -178,13 +188,22 @@ export function _saveQuestionAnswer({
       answers = {
         ...answers,
         [answerId]: {
-          userId: authedUser,
-          questionId: qid,
-          vote: answer
+          userId,
+          questionId,
+          vote
         }
       }
 
       res()
+    }, 500)
+  })
+}
+
+export function _signOut(){
+  return new Promise((res, rej) => {
+    setTimeout(() => {
+      signedInUser = "";
+      res(signedInUser)
     }, 500)
   })
 }
