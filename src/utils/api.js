@@ -19,8 +19,20 @@ export function getInitialData () {
   }))
 }
 
-export function saveUser({name, avatarURL}){
-  const userInputs = {name, avatarURL};
+export function getUsers(){
+  return _getUsers();
+}
+
+export function getQuestions(){
+  return _getQuestions();
+}
+
+export function getAnswers(){
+  return _getAnswers();
+}
+
+export function saveUser({userName, name, avatarURL}){
+  const userInputs = {userName, name, avatarURL};
   return _saveUser(userInputs);
 }
 

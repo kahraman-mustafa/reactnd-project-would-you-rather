@@ -1,10 +1,10 @@
 export const SIGN_IN = "SIGN_IN";
 export const SIGN_OUT = "SIGN_OUT";
 
-function signInAction({userId}){
+function signInAction({userName}){
     return {
         type: SIGN_IN,
-        userId
+        userId: userName
     }
 }
 
@@ -14,10 +14,10 @@ function signOutAction(){
     }
 }
 
-export function handleSignIn({userId}){
+export function handleSignIn({userName}){
     return (dispatch) => {
         //* Do side effects if exists
-        return dispatch(signInAction({userId}));
+        return dispatch(signInAction({userName}));
     }
 }
 

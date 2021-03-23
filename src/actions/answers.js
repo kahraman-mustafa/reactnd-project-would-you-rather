@@ -1,14 +1,30 @@
-import { saveAnswer } from '../utils/api';
+import { saveAnswer, getAnswers } from '../utils/api';
 import { showLoading, hideLoading } from "react-redux-loading";
 
 export const ADD_ANSWER = "ADD_ANSWER";
-export const RECEIVE_ANSWERS = "RECEIVE_ANSWERS";
+export const FETCH_ANSWERS = "FETCH_ANSWERS";
 
-export function receiveAnswersAction(answers){
+function fetchAnswersAction(answers){
     return {
-        type: RECEIVE_ANSWERS,
+        type: FETCH_ANSWERS,
         answers
     }
+}
+
+export function handleFetchAnswers(){
+  return (dispatch) => {
+
+    dispatch(showLoading());
+
+    return getAnswers()
+      .then((answers) => 
+        dispatch(fetchAnswersAction(answers)))
+      .then(() => 
+        dispatch(hideLoading()))
+      .catch(() => {
+        alert('There was an error. Try again.')
+      });
+  }
 }
 
 function addAnswerAction(answer){

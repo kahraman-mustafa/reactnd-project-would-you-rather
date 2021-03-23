@@ -156,11 +156,12 @@ export function _getAnswers() {
  * @returns {Object} user - Newly added user object
  */
  function formatUser({
+  userName,
   name,
   avatarURL
 }) {
   return {
-    id: generateUID(),
+    id: userName,
     name,
     avatarURL
   }

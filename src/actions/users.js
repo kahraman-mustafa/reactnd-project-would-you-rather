@@ -1,14 +1,30 @@
-import { saveUser } from '../utils/api';
+import { saveUser, getUsers } from '../utils/api';
 import { showLoading, hideLoading } from "react-redux-loading";
 
 export const ADD_USER = "ADD_USER";
-export const RECEIVE_USERS = "RECEIVE_USERS";
+export const FETCH_USERS = "FETCH_USERS";
 
-export function receiveUsersAction(users){
+function fetchUsersAction(users){
     return {
-        type: RECEIVE_USERS,
+        type: FETCH_USERS,
         users
     }
+}
+
+export function handleFetchUsers(){
+  return (dispatch) => {
+
+    dispatch(showLoading());
+
+    return getUsers()
+      .then((users) => 
+        dispatch(fetchUsersAction(users)))
+      .then(() => 
+        dispatch(hideLoading()))
+      .catch(() => {
+        alert('There was an error. Try again.')
+      });
+  }
 }
 
 function addUserAction(user){
@@ -18,14 +34,14 @@ function addUserAction(user){
   }
 }
 
-export function handleAddUser(name, avatarURL){
+export function handleAddUser({userName, name, avatarURL}){
   return (dispatch) => {
 
     dispatch(showLoading());
 
-    return saveUser({name, avatarURL})
+    return saveUser({userName, name, avatarURL})
         .then((user) => 
-            dispatch(addUserAction(user))
+            dispatch(addUserAction(user)))
         .then(() => 
             hideLoading())
         .catch(() => {

@@ -2,11 +2,11 @@ import { saveQuestion } from '../utils/api';
 import { showLoading, hideLoading } from "react-redux-loading";
 
 export const ADD_QUESTION = "ADD_QUESTION";
-export const RECEIVE_QUESTIONS = "RECEIVE_QUESTIONS";
+export const FETCH_QUESTIONS = "FETCH_QUESTIONS";
 
-export function receiveQuestionsAction(questions){
+export function fetchQuestionsAction(questions){
     return {
-        type: RECEIVE_QUESTIONS,
+        type: FETCH_QUESTIONS,
         questions
     }
 }
