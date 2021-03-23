@@ -34,7 +34,7 @@ function addAnswerAction(answer){
   }
 }
 
-export function handleAddAnswer(questionId, vote){
+export function handleAddAnswer({questionId, vote}){
   return (dispatch, getState) => {
     const {signedInUser} = getState();
 
