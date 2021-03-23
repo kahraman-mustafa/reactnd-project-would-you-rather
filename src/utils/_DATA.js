@@ -109,8 +109,6 @@ let answers = {
   }
 }
 
-let signedInUser = "";
-
 function generateUID() {
   return Math.random().toString(36).substring(2, 15) + Math.random().toString(36).substring(2, 15)
 }
@@ -161,49 +159,54 @@ function formatQuestion({
   }
 }
 
-export function _saveQuestion(question) {
-  return new Promise((res, rej) => {
-    const formattedQuestion = formatQuestion(question);
-
-    setTimeout(() => {
-      questions = {
-        ...questions,
-        [formattedQuestion.id]: formattedQuestion
-      }
-
-      res(formattedQuestion)
-    }, 1000)
-  })
-}
-
-export function _saveAnswer({
+function formatAnswer({
   userId,
   questionId,
   vote
 }) {
+  return {
+    userId,
+    questionId,
+    vote
+  }
+}
+
+/**
+ * @param {*} questionInputs: {optionOneText, optionTwoText, author}
+ * @return {*} 
+ */
+export function _saveQuestion(questionInputs) {
   return new Promise((res, rej) => {
+    const question = formatQuestion(questionInputs);
+
     setTimeout(() => {
-      const answerId = authedUser + qid;
-      
-      answers = {
-        ...answers,
-        [answerId]: {
-          userId,
-          questionId,
-          vote
-        }
+      questions = {
+        ...questions,
+        [question.id]: question
       }
 
-      res()
-    }, 500)
+      res(question)
+    }, 1000)
   })
 }
 
-export function _signOut(){
+
+/**
+ * @param {*} answerInputs: {userId, questionId, vote}
+ * @return {*} 
+ */
+export function _saveAnswer(answerInputs) {
   return new Promise((res, rej) => {
     setTimeout(() => {
-      signedInUser = "";
-      res(signedInUser)
+      const answerId = answerInputs.userId + answerInputs.questionId;
+      const answer = formatAnswer(answerInputs);
+
+      answers = {
+        ...answers,
+        [answerId]: answer
+      }
+
+      res()
     }, 500)
   })
 }

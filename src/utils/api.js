@@ -4,7 +4,7 @@ import {
   _getUsers,
   _getSignedInUser,
   _saveQuestion,
-  _saveAnswer 
+  _saveAnswer
 } from "./_DATA";
 
 export function getInitialData () {
@@ -21,10 +21,12 @@ export function getInitialData () {
   }))
 }
 
-export function saveQuestion({author, optionOne, optionTwo}){
-  return _saveQuestion({author, optionOne, optionTwo});
+export function saveQuestion({author, optionOneText, optionTwoText}){
+  const questionInput = {author, optionOneText, optionTwoText};
+  return _saveQuestion(questionInput);
 }
 
 export function saveAnswer({userId, questionId, vote}){
-  return _saveAnswer({userId, questionId, vote})
+  const answer = {userId, questionId, vote};
+  return _saveAnswer(answer);
 }
