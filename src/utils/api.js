@@ -2,7 +2,7 @@ import {
   _getAnswers,
   _getQuestions,
   _getUsers,
-  _getSignedInUser,
+  _saveUser,
   _saveQuestion,
   _saveAnswer
 } from "./_DATA";
@@ -11,22 +11,25 @@ export function getInitialData () {
   return Promise.all([
     _getUsers(),
     _getQuestions(),
-    _getAnswers(),
-    _getSignedInUser()
-  ]).then(([users, questions, answers, signedInUser]) => ({
+    _getAnswers()
+  ]).then(([users, questions, answers]) => ({
     users,
     questions,
-    answers,
-    signedInUser
+    answers
   }))
 }
 
+export function saveUser({name, avatarURL}){
+  const userInputs = {name, avatarURL};
+  return _saveUser(userInputs);
+}
+
 export function saveQuestion({author, optionOneText, optionTwoText}){
-  const questionInput = {author, optionOneText, optionTwoText};
-  return _saveQuestion(questionInput);
+  const questionInputs = {author, optionOneText, optionTwoText};
+  return _saveQuestion(questionInputs);
 }
 
 export function saveAnswer({userId, questionId, vote}){
-  const answer = {userId, questionId, vote};
-  return _saveAnswer(answer);
+  const answerInputs = {userId, questionId, vote};
+  return _saveAnswer(answerInputs);
 }

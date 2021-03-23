@@ -1,9 +1,3 @@
-/**
- * @author Mustafa KAHRAMn
- * No API or database call for signing in
- * Hence, there is no import
- */
-
 export const SIGN_IN = "SIGN_IN";
 export const SIGN_OUT = "SIGN_OUT";
 
