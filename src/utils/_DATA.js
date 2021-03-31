@@ -2,17 +2,17 @@ let users = {
   "sarahedo": {
     id: 'sarahedo',
     name: 'Sarah Edo',
-    avatarURL: ""
+    avatarURL: "/src/img/sarahedo.jpg"
   },
   "tylermcginnis": {
     id: 'tylermcginnis',
     name: 'Tyler McGinnis',
-    avatarURL: ""
+    avatarURL: "/src/img/tylermcginnis.png"
   },
   "johndoe": {
     id: 'johndoe',
     name: 'John Doe',
-    avatarURL: ""
+    avatarURL: "/src/img/johndoe.png"
   }
 }
 

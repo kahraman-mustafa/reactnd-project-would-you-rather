@@ -4,6 +4,7 @@ import { Provider } from "react-redux";
 import { createStore } from "redux";
 import middleware from "./middleware"
 import './index.css';
+import 'bootstrap/dist/css/bootstrap.min.css';
 import App from './components/App';
 import reducer from './reducers'
 import reportWebVitals from './reportWebVitals';

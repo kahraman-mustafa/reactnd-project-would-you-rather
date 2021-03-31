@@ -1,18 +1,20 @@
 import { SIGN_IN, SIGN_OUT } from "../actions/signedInUser"
 
-export default function signedInUserReducer(state = {userId: null}, action){
+export default function signedInUserReducer(state = {id: null, name: null}, action){
     switch(action.type){
         case SIGN_IN:
-            const {userId} = action;
+            const {id, name} = action;
             
             return {
                 ...state,
-                userId
+                id,
+                name
             }
         case SIGN_OUT:
             return {
                 ...state,
-                userId: null
+                id: null,
+                name: null
             }
         default:
             return state;
