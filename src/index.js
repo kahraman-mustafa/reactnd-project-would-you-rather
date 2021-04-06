@@ -1,19 +1,19 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { Provider } from "react-redux";
-import { createStore } from "redux";
-import middleware from "./middleware"
 import './index.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import App from './components/App';
-import reducer from './reducers'
+import {store, persistor} from "./store";
+import { PersistGate } from 'redux-persist/integration/react'
 import reportWebVitals from './reportWebVitals';
 
-const store = createStore(reducer, middleware);
 
 ReactDOM.render(
   <Provider store={store}>
-    <App />
+    <PersistGate loading={null} persistor={persistor}> {/* null passed to loading, persistor is being used here*/}
+      <App />
+    </PersistGate>
   </Provider>,
   document.getElementById('root')
 );

@@ -11,7 +11,7 @@ class UserSelectionList extends Component {
     selectedUserId: null
   }
 
-  componentWillMount(){
+  componentDidMount(){
     this.props.dispatch(handleFetchUsers());
     const userIds = Object.keys(this.props.users);
     console.log("Users: ", JSON.stringify(userIds));
@@ -55,7 +55,7 @@ class UserSelectionList extends Component {
           )}
         </select>
         <input type="submit" value="Submit" />
-        {!this.state.selectedUserId && <p className="warning-text">Select a user to continue</p>}
+        {(!this.state.selectedUserId && !this.props.signedInUser.id) && <p className="warning-text">Select a user to continue</p>}
       </form>
     )
   }

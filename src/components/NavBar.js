@@ -32,16 +32,19 @@ class NavBar extends Component {
                         </NavLink>
                     </li>
                 </ul>
-                <ul className="nav-ul-right">
-                    <li>
-                        <p>Hello, {this.props.signedInUser.name}</p>
-                    </li>
-                    <li>
-                        <button onClick={this.onSignOut}>
-                            Sign Out
-                        </button>
-                    </li>
-                </ul>
+                {this.props.signedInUser.id && (
+                    <ul className="nav-ul-right">
+                        <li>
+                            <p>Hello, {this.props.signedInUser.name}</p>
+                        </li>
+                        <li>
+                            <button onClick={this.onSignOut}>
+                                Sign Out
+                            </button>
+                        </li>
+                    </ul>
+                )}
+                
             </nav>
         )
     }
