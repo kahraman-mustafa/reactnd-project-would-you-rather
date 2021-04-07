@@ -35,6 +35,9 @@ class NavBar extends Component {
                 {this.props.signedInUser.id && (
                     <ul className="nav-ul-right">
                         <li>
+                            <img className="avatar" height={20} src={this.props.signedInUser.avatarURL} alt="avatar"/>
+                        </li>
+                        <li>
                             <p>Hello, {this.props.signedInUser.name}</p>
                         </li>
                         <li>
@@ -51,10 +54,10 @@ class NavBar extends Component {
     
 }
 
-function mapStateToProps({signedInUser, users}){
+function mapStateToProps({signedInUser}){
   
     return {
-      users, signedInUser
+      signedInUser
     }
   }
 

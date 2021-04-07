@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import {connect} from "react-redux"
 import { withRouter } from "react-router-dom";
+import LazyLoad from 'react-lazy-load';
 
 class NewQuestionContainer extends Component {
   render() {
@@ -12,7 +13,13 @@ class NewQuestionContainer extends Component {
     }
 
     return(
-      <div>New Question Container</div>
+      <div>
+        New Question Container
+        <LazyLoad height={200}>
+          <img height={100} src="/img/kahraman.jpg" alt='cat' />
+        </LazyLoad>
+        <img height={100} src="/img/kahraman.jpg" alt="avatar"/>
+        </div>
     )
   }
 }

@@ -36,7 +36,8 @@ class UserSelectionList extends Component {
     const {selectedUserId} = this.state
     if(selectedUserId){
       const name = this.props.users[selectedUserId].name;
-      this.props.dispatch(handleSignIn(selectedUserId, name));
+      const avatarURL = this.props.users[selectedUserId].avatarURL;
+      this.props.dispatch(handleSignIn(selectedUserId, name, avatarURL));
       this.props.history.push(`/`)
     }
   }

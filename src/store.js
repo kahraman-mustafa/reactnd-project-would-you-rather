@@ -1,11 +1,11 @@
-import { createStore, applyMiddleware } from 'redux'
+import { createStore } from 'redux'
 import { persistStore, persistReducer } from 'redux-persist' // imports from redux-persist
 import storage from 'redux-persist/lib/storage' // defaults to localStorage for web
 import middleware from "./middleware"
 import rootReducer from './reducers' // Root reducer
 
 const persistConfig = { // configuration object for redux-persist
-    key: 'signedInUser',
+    key: 'root',
     storage, // define which storage to use
     whitelist: ['signedInUser'],
     blacklist: ['answers', 'questions']

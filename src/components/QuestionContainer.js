@@ -1,8 +1,8 @@
 import React, { Component } from "react";
 import {connect} from "react-redux"
 import { withRouter } from "react-router-dom";
-import {} from "../actions/answers"
-import {} from "../actions/questions"
+import QuestionFilter from "./QuestionFilter";
+import QuestionList from "./QuestionList";
 
 class QuestionContainer extends Component {
 
@@ -36,30 +36,20 @@ class QuestionContainer extends Component {
 
     return(
       <div>
-        <div className="filter unanswered" onClick={this.onFilterByUnanswered}>
-          Show Unanswered Questions
-        </div>
-        <div className="filter answered" onClick={this.onFilterByAnswered}>
-          Show Answered Questions
-        </div>
-        {this.state.displayAnswered 
-          ? JSON.stringify(this.props.answeredQuestionIds) 
-          : JSON.stringify(Object.keys(this.props.questions).filter((id) => !this.props.answeredQuestionIds.includes(id)))}
+        <QuestionFilter 
+          onFilterByUnanswered={this.onFilterByUnanswered}
+          onFilterByAnswered={this.onFilterByAnswered}
+          displayAnswered={this.state.displayAnswered} />
+        
+        <QuestionList displayAnswered={this.state.displayAnswered} />
+
       </div>
     )
   }
 }
 
-function mapStateToProps({questions, answers, signedInUser}){
-  const userAnswersIds = Object.keys(answers).filter((answerId) => answers[answerId].userId === signedInUser.id);
-  const answeredQuestionIds = userAnswersIds.map((answerId) => answers[answerId].questionId);
-  
-
-  return {
-    signedInUser,
-    questions,
-    answeredQuestionIds
-  }
+function mapStateToProps({signedInUser}){
+  return {signedInUser}
 }
 
 export default withRouter(connect(mapStateToProps)(QuestionContainer));
