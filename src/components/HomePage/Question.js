@@ -12,13 +12,13 @@ class Question extends Component {
   onClickViewPoll = (e) => {
     e.preventDefault();
     const {questionId} = this.props;
-    this.props.history.push(`/question/${questionId}`);
+    this.props.history.push(`/questions/${questionId}`);
   }
 
   onClickSubmit = (vote) => {
     const {questionId} = this.props;
     this.props.dispatch(handleAddAnswer(questionId, vote));
-    this.props.history.push(`/question/${questionId}`);
+    this.props.history.push(`/questions/${questionId}`);
   }
 
   render() {

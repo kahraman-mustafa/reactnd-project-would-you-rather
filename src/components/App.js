@@ -1,5 +1,5 @@
 import React, { Component, Fragment } from 'react'
-import {BrowserRouter as Router, Route, Redirect} from "react-router-dom";
+import {BrowserRouter as Router, Route, Redirect, Switch} from "react-router-dom";
 import { connect } from "react-redux";
 import LoadingBar from "react-redux-loading";
 import { handleInitialData } from "../actions/shared" 
@@ -27,12 +27,14 @@ class App extends Component {
               ? <SignInContainer />
               : <div>
                   <NavBar />
-                  <Route path="/signin" exact component={SignInContainer} />
-                  <Route path="/" exact component={Home} />
-                  <Route path="/newQuestion" component={NewQuestionContainer} />
-                  <Route path="/leaderboard" component={LeaderBoard} />
-                  <Route path="/question/:questionId" component={Question} />
-                  <Route render={() => <Redirect to={{pathname: "/"}} />} />
+                  <Switch>
+                    <Route path="/signin" exact component={SignInContainer} />
+                    <Route path="/add" component={NewQuestionContainer} />
+                    <Route path="/leaderboard" component={LeaderBoard} />
+                    <Route path="/questions/:questionId" component={Question} />
+                    <Route path="/" exact component={Home} />
+                    <Route render={() => <Redirect to={{pathname: "/"}} />} />
+                  </Switch>
                 </div>}
           </div>
         </Fragment>
