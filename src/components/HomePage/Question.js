@@ -17,18 +17,24 @@ class Question extends Component {
 
   onClickSubmit = (vote) => {
     const {questionId} = this.props;
-    console.log(`Question id: ${questionId}, vote: ${vote}`);
     this.props.dispatch(handleAddAnswer(questionId, vote));
     this.props.history.push(`/question/${questionId}`);
   }
 
   render() {
+    const {signedInUser} = this.props;
+
+    if(!signedInUser.id){
+      this.props.history.push(`/signin`);
+      alert("In order to use app, please sign in");
+    }
+
     const {isQuestionIdValid, questionURLId, authorName, avatarURL, optionOne, optionTwo, isAnswered} = this.props;
 
     if(!isQuestionIdValid){
       return (<div className="question-item"><p className="warning-text">Invalid Question ID</p></div>);
     }
-    console.log("isAnswered: ", isAnswered);
+    
     return(
       <div className="question-item">
         <p className="author-asks">
@@ -97,11 +103,11 @@ function mapStateToProps({questions, users, answers, signedInUser}, props){
     const authorName = author.name;
     const avatarURL = author.avatarURL;
 
-    return {questionId, questionURLId, authorName, avatarURL, optionOne, optionTwo, isAnswered, isQuestionIdValid}
+    return {questionId, questionURLId, authorName, avatarURL, optionOne, optionTwo, isAnswered, isQuestionIdValid, signedInUser}
   } 
   // if the question tried to display is invalid, then only this information will be assigned to props to show warning message
   else {
-    return {isQuestionIdValid}
+    return {isQuestionIdValid, signedInUser}
   }
 }
 

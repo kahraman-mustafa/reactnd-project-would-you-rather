@@ -1,5 +1,5 @@
 import React, { Component, Fragment } from 'react'
-import {BrowserRouter as Router, Route} from "react-router-dom";
+import {BrowserRouter as Router, Route, Redirect} from "react-router-dom";
 import { connect } from "react-redux";
 import LoadingBar from "react-redux-loading";
 import { handleInitialData } from "../actions/shared" 
@@ -32,6 +32,7 @@ class App extends Component {
                   <Route path="/newQuestion" component={NewQuestionContainer} />
                   <Route path="/leaderboard" component={LeaderBoard} />
                   <Route path="/question/:questionId" component={Question} />
+                  <Route render={() => <Redirect to={{pathname: "/"}} />} />
                 </div>}
           </div>
         </Fragment>
