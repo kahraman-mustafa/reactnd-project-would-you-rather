@@ -11,6 +11,8 @@ class QuestionList extends Component {
     const displayingQuestionIds =  displayAnswered 
       ? answeredQuestionIds
       : Object.keys(questions).filter((id) => !answeredQuestionIds.includes(id));
+
+    displayingQuestionIds.sort((idA, idB) => questions[idB].timestamp - questions[idA].timestamp);
       
     return(
       <ul className="question-list">

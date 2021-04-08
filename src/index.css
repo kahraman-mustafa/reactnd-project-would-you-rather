@@ -22,7 +22,7 @@ a {
   margin: auto;
 }
 
-.signin-container > h3, p, form {
+.signin-container > * {
   text-align: center;
 }
 
@@ -107,6 +107,7 @@ a {
   max-height: 400px;
   padding: 10px;
   border: 1px solid black;
+  margin: auto;
 }
 
 .author-asks {
