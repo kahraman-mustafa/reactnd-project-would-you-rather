@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import {connect} from "react-redux"
 import { withRouter } from "react-router-dom";
-import QuestionItem from "./QuestionItem";
+import Question from "./Question";
 
 class QuestionList extends Component {
 
@@ -15,7 +15,9 @@ class QuestionList extends Component {
     return(
       <ul className="question-list">
         {displayingQuestionIds.map((questionId) => 
-          <QuestionItem questionId={questionId} displayAnswered={displayAnswered}/>
+          <li className="question-item-container" key={questionId}>
+            <Question questionId={questionId} displayAnswered={displayAnswered}/>
+          </li>
         )}
       </ul>
     )

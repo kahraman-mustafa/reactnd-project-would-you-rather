@@ -22,7 +22,7 @@ class QuestionFilter extends Component {
 }
 
 QuestionFilter.propTypes = {
-  onFilterByUnanswered: PropTypes.array.isRequired,
+  onFilterByUnanswered: PropTypes.func.isRequired,
   onFilterByAnswered: PropTypes.func.isRequired
 }
 

@@ -1,9 +1,8 @@
 import React, {Component} from "react";
 import { withRouter } from "react-router-dom";
 import {connect} from "react-redux";
-import { handleFetchUsers, handleAddUser } from "../actions/users"
-import {handleSignIn} from "../actions/signedInUser"
-import { DropdownList } from 'react-widgets';
+import { handleFetchUsers } from "../../actions/users"
+import { handleSignIn } from "../../actions/signedInUser";
 
 class UserSelectionList extends Component {
   

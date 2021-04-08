@@ -34,14 +34,14 @@ function addAnswerAction(answer){
   }
 }
 
-export function handleAddAnswer({questionId, vote}){
+export function handleAddAnswer(questionId, vote){
   return (dispatch, getState) => {
     const {signedInUser} = getState();
 
     dispatch(showLoading());
 
     return saveAnswer({
-            userId: signedInUser.userId, 
+            userId: signedInUser.id, 
             questionId, 
             vote
         }).then((answer) => 

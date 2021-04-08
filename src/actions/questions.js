@@ -41,7 +41,7 @@ export function handleAddQuestion({optionOneText, optionTwoText}){
         dispatch(showLoading());
 
         return saveQuestion({
-                author: signedInUser.userId, 
+                author: signedInUser.id, 
                 optionOneText, 
                 optionTwoText
             }).then((question) => 

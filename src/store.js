@@ -8,7 +8,6 @@ const persistConfig = { // configuration object for redux-persist
     key: 'root',
     storage, // define which storage to use
     whitelist: ['signedInUser'],
-    blacklist: ['answers', 'questions']
 }
 
 const persistedReducer = persistReducer(persistConfig, rootReducer) // create a persisted reducer

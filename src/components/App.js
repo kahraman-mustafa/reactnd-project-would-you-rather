@@ -3,14 +3,12 @@ import {BrowserRouter as Router, Route} from "react-router-dom";
 import { connect } from "react-redux";
 import LoadingBar from "react-redux-loading";
 import { handleInitialData } from "../actions/shared" 
-import { handleFetchUsers, handleAddUser } from "../actions/users"
-import { handleFetchAnswers, handleAddAnswer } from "../actions/answers"
-import { handleFetchQuestions, handleAddQuestion } from "../actions/questions"
-import SignInContainer from "./SignInContainer"
+import SignInContainer from "./SignInPage/SignInContainer"
 import NavBar from "./NavBar";
-import QuestionContainer from "./QuestionContainer"
+import QuestionContainer from "./HomePage/QuestionContainer"
 import NewQuestionContainer from "./NewQuestionContainer"
 import LeaderBoard from "./LeaderBoard"
+import Question from "./HomePage/Question";
 
 class App extends Component {
 
@@ -19,6 +17,7 @@ class App extends Component {
   }
 
   render() {
+
     return (
       <Router>
         <Fragment>
@@ -32,6 +31,7 @@ class App extends Component {
                   <Route path="/" exact component={QuestionContainer} />
                   <Route path="/newQuestion" component={NewQuestionContainer} />
                   <Route path="/leaderboard" component={LeaderBoard} />
+                  <Route path="/question/:questionId" component={Question} />
                 </div>}
           </div>
         </Fragment>
@@ -43,7 +43,7 @@ class App extends Component {
 function mapStateToProps({signedInUser}){
   
   return {
-    loading: signedInUser.userId === null || typeof(signedInUser.userId) === undefined
+    loading: signedInUser.userId === null || typeof(signedInUser.userId) === undefined,
   }
 }
 
