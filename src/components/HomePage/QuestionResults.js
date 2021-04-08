@@ -23,8 +23,9 @@ class QuestionResults extends Component {
           <p>{optionOne}</p>
 
           <div className="vote-bar">
+            {percentVoteOne === 0 && <span>{`% ${percentVoteOne}`}</span>}
             <div className="inline-block vote-percent" style={{width: `${percentVoteOne}%`}}>
-              %{percentVoteOne}
+              {percentVoteOne > 0 && `% ${percentVoteOne}`}
             </div>
           </div>
 
@@ -36,8 +37,9 @@ class QuestionResults extends Component {
           <p>{optionTwo}</p>
 
           <div className="vote-bar">
+            {percentVoteTwo === 0 && <span>{`% ${percentVoteTwo}`}</span>}
             <div className="inline-block vote-percent" style={{width: `${percentVoteTwo}%`}}>
-              % {percentVoteTwo}
+              {percentVoteTwo > 0 && `% ${percentVoteTwo}`}
             </div>
           </div>
 

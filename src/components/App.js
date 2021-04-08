@@ -5,7 +5,7 @@ import LoadingBar from "react-redux-loading";
 import { handleInitialData } from "../actions/shared" 
 import SignInContainer from "./SignInPage/SignInContainer"
 import NavBar from "./NavBar";
-import QuestionContainer from "./HomePage/QuestionContainer"
+import Home from "./HomePage/Home"
 import NewQuestionContainer from "./NewQuestionContainer"
 import LeaderBoard from "./LeaderBoard"
 import Question from "./HomePage/Question";
@@ -28,7 +28,7 @@ class App extends Component {
               : <div>
                   <NavBar />
                   <Route path="/signin" exact component={SignInContainer} />
-                  <Route path="/" exact component={QuestionContainer} />
+                  <Route path="/" exact component={Home} />
                   <Route path="/newQuestion" component={NewQuestionContainer} />
                   <Route path="/leaderboard" component={LeaderBoard} />
                   <Route path="/question/:questionId" component={Question} />

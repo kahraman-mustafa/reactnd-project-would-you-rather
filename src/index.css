@@ -152,10 +152,17 @@ a {
 }
 
 .vote-bar {
+  font-weight: bold;
   width: 90%;
   background-color: white;
   border: 1px solid gray;
   margin: auto;
+}
+
+.vote-bar > span {
+  display: inline-block;
+  width: 100%;
+  text-align: center;
 }
 
 .vote-percent {
@@ -181,7 +188,54 @@ a {
   border-radius: 100%;
 }
 
+.new-question-container {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  max-width: 800px;
+  max-height: 400px;
+  padding: 10px;
+  border: 1px solid black;
+}
 
+.new-question-title {
+  font-size: 1.25em;
+  font-weight: bolder;
+  text-align: left;
+  align-content: center;
+  width: 100%;
+  line-height: 24px;
+}
+
+.new-question-subtitle {
+  font-size: 1.1em;
+}
+
+.new-question-view {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-content: center;
+  width: 100%;
+  height: 100%;
+  border: 1px dashed black;
+  padding: 12px;
+}
+
+.new-question-form {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-content: center;
+  width: 90%;
+  height: 100%;
+  margin: auto;
+}
+
+.new-question-form > label {
+  text-align: center;
+}
 
 .btn {
   text-transform: uppercase;

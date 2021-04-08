@@ -4,7 +4,7 @@ import { withRouter } from "react-router-dom";
 import QuestionFilter from "./QuestionFilter";
 import QuestionList from "./QuestionList";
 
-class QuestionContainer extends Component {
+class Home extends Component {
 
   state = {
     displayAnswered: false
@@ -52,4 +52,4 @@ function mapStateToProps({signedInUser}){
   return {signedInUser}
 }
 
-export default withRouter(connect(mapStateToProps)(QuestionContainer));
+export default withRouter(connect(mapStateToProps)(Home));
