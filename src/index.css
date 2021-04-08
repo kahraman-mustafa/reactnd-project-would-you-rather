@@ -10,6 +10,26 @@ a {
   color: #252525;
 }
 
+.signin-container {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  max-width: 800px;
+  max-height: 400px;
+  padding: 10px;
+  border: 1px solid black;
+  margin: auto;
+}
+
+.signin-container > h3, p, form {
+  text-align: center;
+}
+
+.push-margin {
+  margin: 12px;
+}
+
 .warning-text {
   color: red;
 }

@@ -47,16 +47,19 @@ class UserSelectionList extends Component {
     console.log("State: " + this.state.selectedUserId);
 
     return(
-      <form onSubmit={this.signIn}>
-        <label htmlFor="users">Choose a user:</label>
-        <select id="users" value={this.state.selectedUserId} onChange={this.changeUser}>
-          {Object.keys(users).map((userId) =>
-            <option value={userId} key={userId} >{users[userId].name}</option>
-          )}
-        </select>
-        <input type="submit" value="Submit" />
+      <div>
+        <form onSubmit={this.signIn}>
+          <label className="push-margin" htmlFor="users">Choose a user:</label>
+          <select className="push-margin" id="users" value={this.state.selectedUserId} onChange={this.changeUser}>
+            {Object.keys(users).map((userId) =>
+              <option value={userId} key={userId} >{users[userId].name}</option>
+            )}
+          </select>
+          <input className="push-margin" type="submit" value="Submit" />
+        </form>
         {(!this.state.selectedUserId && !this.props.signedInUser.id) && <p className="warning-text">Select a user to continue</p>}
-      </form>
+      </div>
+      
     )
   }
 }

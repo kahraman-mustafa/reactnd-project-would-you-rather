@@ -14,7 +14,7 @@ class SignInContainer extends Component {
     }
 
     return (
-      <div>
+      <div className="signin-container">
         <h3>Welcome to the "Would you Rather" App</h3>
         <p>Please Sign in to Continue</p>
         <UserSelectionList />
