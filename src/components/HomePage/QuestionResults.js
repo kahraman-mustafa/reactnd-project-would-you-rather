@@ -11,8 +11,8 @@ class QuestionResults extends Component {
     const isOptOneVoted = userVote === "optionOne" ? "option-voted" : "";
     const isOptTwoVoted = userVote === "optionTwo" ? "option-voted" : "";
 
-    const percentVoteOne = votesOptionOne/votesTotal*100;
-    const percentVoteTwo = votesOptionTwo/votesTotal*100;
+    const percentVoteOne = Math.round(votesOptionOne/votesTotal*100);
+    const percentVoteTwo = Math.round(votesOptionTwo/votesTotal*100);
 
     return(
       <div className="question-view">
