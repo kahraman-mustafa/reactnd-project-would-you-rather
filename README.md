@@ -2,6 +2,8 @@
 
 This is the final version of assessment project for Udacity's React & Redux course, prepared by Mustafa Kahraman.
 
+This app is created by using `Create React App`. App can be installed by running against `npm install` and can be launched by running against `npm start`.
+
 The provided `_DATA.js` file renamed as `_DATA_provided` and not used. It is refactored to normalize data as the provided objects treated like a database table. All informations stayed same but construction of dara objects changed and used in that way.
 
 I have provided additional functionality to add user to the system and added loading bar also. I moved img folder to public folder. In order to better organize, I added subfolder in components folder.
@@ -44,6 +46,8 @@ Questions include:
 
 ### Answers
 
+| Attribute | Type | Description |
+|-----------------|------------------|-------------------|
 | id                 | String           | The answer’s unique identifier |
 | userId          | String           | The user’s id who voted the answer     |
 | questionId  | String           | The question's unique identifier that is voted |
