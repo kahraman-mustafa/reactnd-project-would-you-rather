@@ -2,9 +2,8 @@ import React, {Component} from "react";
 import { connect } from "react-redux";
 import { withRouter } from "react-router-dom";
 import PropTypes from 'prop-types';
-import UserSelectionList from "./UserSelectionList"
 
-class SignInContainer extends Component {
+class Page404 extends Component {
 
   onAddNewUser = (e) => {
     e.preventDefault();
@@ -13,6 +12,7 @@ class SignInContainer extends Component {
 
   render(){
     const {signedInUser, redirectPath} = this.props;
+    console.log("REDIRECT PATH: ", redirectPath);
 
     if(signedInUser.id){
       this.props.history.push(`/`);
@@ -22,8 +22,7 @@ class SignInContainer extends Component {
     return (
       <div className="signin-container">
         <h3>Welcome to the "Would you Rather" App</h3>
-        <p className={!signedInUser.id ? "warning-text" : ""}>{!signedInUser.id && "In order to use app, "}Please Sign in to Continue</p>
-        <UserSelectionList redirectPath={redirectPath}/>
+        <p className={!signedInUser.id && "warning-text"}>{!signedInUser.id && "In order to use app, "}Please Sign in to Continue</p>
         <button id="btn-add-user" onClick={this.onAddNewUser}>Add New User</button>
       </div>
     )
@@ -34,8 +33,8 @@ function mapStateToProps({signedInUser}){
   return {signedInUser};
 }
 
-SignInContainer.propTypes = {
+Page404.propTypes = {
   redirectPath: PropTypes.string.isRequired
 }
 
-export default withRouter(connect(mapStateToProps)(SignInContainer));
+export default withRouter(connect(mapStateToProps)(Page404));

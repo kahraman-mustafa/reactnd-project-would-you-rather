@@ -25,11 +25,6 @@ class Home extends Component {
   }
 
   render() {
-    const {signedInUser} = this.props;
-
-    if(!signedInUser.id){
-      this.props.history.push(`/signin`);
-    }
 
     return(
       <div>

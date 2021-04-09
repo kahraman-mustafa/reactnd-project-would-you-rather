@@ -31,12 +31,6 @@ class NewQuestionContainer extends Component {
   }
 
   render() {
-    const {signedInUser} = this.props;
-
-    if(!signedInUser.id){
-      this.props.history.push(`/signin`);
-    }
-
     const {optionOneText, optionTwoText} = this.state;
 
     return(
@@ -58,11 +52,4 @@ class NewQuestionContainer extends Component {
   }
 }
 
-function mapStateToProps({signedInUser}){
-
-  return {
-    signedInUser
-  }
-}
-
-export default withRouter(connect(mapStateToProps)(NewQuestionContainer));
+export default withRouter(connect()(NewQuestionContainer));

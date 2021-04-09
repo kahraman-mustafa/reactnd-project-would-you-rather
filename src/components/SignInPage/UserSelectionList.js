@@ -22,12 +22,14 @@ class UserSelectionList extends Component {
 
   signIn = (e) => {
     e.preventDefault();
-    const {selectedUserId} = this.state
+    const {selectedUserId} = this.state;
+    const {redirectPath} = this.props;
+
     if(selectedUserId){
       const name = this.props.users[selectedUserId].name;
       const avatarURL = this.props.users[selectedUserId].avatarURL;
       this.props.dispatch(handleSignIn(selectedUserId, name, avatarURL));
-      this.props.history.push(`/`)
+      this.props.history.push(redirectPath);
     }
   }
 

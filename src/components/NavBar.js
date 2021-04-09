@@ -8,7 +8,9 @@ class NavBar extends Component {
     onSignOut = (e) => {
         e.preventDefault();
         this.props.dispatch(handleSignOut());
-        this.props.history.push(`/signin`)
+        // beacuse user signout, this means he/she tries to access signin page directly,
+        // then redirect page if signing in again will be the home page "/"
+        this.props.history.push('/signin');
     }
 
     render(){

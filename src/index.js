@@ -1,5 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import {BrowserRouter} from "react-router-dom";
 import { Provider } from "react-redux";
 import './index.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
@@ -12,7 +13,9 @@ import reportWebVitals from './reportWebVitals';
 ReactDOM.render(
   <Provider store={store}>
     <PersistGate loading={null} persistor={persistor}> {/* null passed to loading, persistor is being used here*/}
-      <App />
+      <BrowserRouter>
+        <App />
+      </BrowserRouter>
     </PersistGate>
   </Provider>,
   document.getElementById('root')

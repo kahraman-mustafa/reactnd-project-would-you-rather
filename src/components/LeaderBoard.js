@@ -4,11 +4,6 @@ import { withRouter } from "react-router-dom";
 
 class LeaderBoard extends Component {
   render() {
-    const {signedInUser} = this.props;
-
-    if(!signedInUser.id){
-      this.props.history.push(`/signin`);
-    }
 
     const {users, ranks, numAnsweredQuestions, numCreatedQuestions, scores} = this.props;
 
@@ -43,7 +38,7 @@ class LeaderBoard extends Component {
   }
 }
 
-function mapStateToProps({users, answers, questions, signedInUser}){
+function mapStateToProps({users, answers, questions}){
   const numAnsweredQuestions = {};
   const numCreatedQuestions = {};
   const scores = {};
@@ -72,8 +67,7 @@ function mapStateToProps({users, answers, questions, signedInUser}){
     ranks,
     numAnsweredQuestions,
     numCreatedQuestions,
-    scores,
-    signedInUser
+    scores
   }
 }
 

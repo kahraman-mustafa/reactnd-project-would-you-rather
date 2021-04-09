@@ -22,12 +22,6 @@ class Question extends Component {
   }
 
   render() {
-    const {signedInUser} = this.props;
-
-    if(!signedInUser.id){
-      this.props.history.push(`/signin`);
-    }
-
     const {isQuestionIdValid, questionURLId, authorName, avatarURL, optionOne, optionTwo, isAnswered} = this.props;
 
     if(!isQuestionIdValid){
