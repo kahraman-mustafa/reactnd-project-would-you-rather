@@ -8,7 +8,7 @@ The provided `_DATA.js` file renamed as `_DATA_provided` and not used. It is ref
 
 I have provided additional functionality to add user to the system and added loading bar also. I moved img folder to public folder. In order to better organize, I added subfolder in components folder.
 
-I used redux-persist library to persist signedInUser info when refreshing page.
+I used `redux-persist` library to persist signedInUser info when refreshing page.
 
 The `_DATA.js` file represents a fake database and methods that let you access the data. The only thing you need to edit in the ` _DATA.js` file is the value of `avatarURL`. Each user should have an avatar, so you’ll need to add the path to each user’s avatar.
 
