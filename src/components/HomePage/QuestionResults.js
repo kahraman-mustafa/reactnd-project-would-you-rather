@@ -53,7 +53,7 @@ class QuestionResults extends Component {
 }
 
 function mapStateToProps({answers, signedInUser}, props){
-  const questionURLId = props.match.params.questionId;
+  const questionURLId = props.match.params.question_id;
 
   const questionAnswerIds = Object.keys(answers)
     .filter((answerId) => answers[answerId].questionId === questionURLId);

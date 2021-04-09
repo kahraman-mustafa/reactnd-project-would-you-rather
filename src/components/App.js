@@ -9,6 +9,7 @@ import Home from "./HomePage/Home"
 import NewQuestionContainer from "./NewQuestionContainer"
 import LeaderBoard from "./LeaderBoard"
 import Question from "./HomePage/Question";
+import AddUser from './AddUser';
 
 class App extends Component {
 
@@ -23,19 +24,16 @@ class App extends Component {
         <Fragment>
           <LoadingBar />
           <div className="container">
-            {this.props.loading === true 
-              ? <SignInContainer />
-              : <div>
-                  <NavBar />
-                  <Switch>
-                    <Route path="/signin" exact component={SignInContainer} />
-                    <Route path="/add" component={NewQuestionContainer} />
-                    <Route path="/leaderboard" component={LeaderBoard} />
-                    <Route path="/questions/:questionId" component={Question} />
-                    <Route path="/" exact component={Home} />
-                    <Route render={() => <Redirect to={{pathname: "/"}} />} />
-                  </Switch>
-                </div>}
+            <NavBar />
+            <Switch>
+              <Route path="/" exact component={Home} />
+              <Route path="/add" component={NewQuestionContainer} />
+              <Route path="/leaderboard" component={LeaderBoard} />
+              <Route path="/questions/:question_id" component={Question} />
+              <Route path="/add_user" component={AddUser} />
+              <Route path="/signin" component={SignInContainer} />
+              <Route render={() => <Redirect to={{pathname: "/"}} />} />
+            </Switch>
           </div>
         </Fragment>
       </Router>
@@ -43,11 +41,4 @@ class App extends Component {
   }
 }
 
-function mapStateToProps({signedInUser}){
-  
-  return {
-    loading: signedInUser.userId === null || typeof(signedInUser.userId) === undefined,
-  }
-}
-
-export default connect(mapStateToProps)(App);
+export default connect()(App);

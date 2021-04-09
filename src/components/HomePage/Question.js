@@ -26,7 +26,6 @@ class Question extends Component {
 
     if(!signedInUser.id){
       this.props.history.push(`/signin`);
-      alert("In order to use app, please sign in");
     }
 
     const {isQuestionIdValid, questionURLId, authorName, avatarURL, optionOne, optionTwo, isAnswered} = this.props;
@@ -61,7 +60,7 @@ class Question extends Component {
 
 function mapStateToProps({questions, users, answers, signedInUser}, props){
   // this will try to get question id from URL in case of user written manuelly to address bar
-  const questionURLId = props.match.params.questionId;
+  const questionURLId = props.match.params.question_id;
 
   // displayAnswered is sent from QuestionList view according to to filter user clicked
   // so if user clicked a question while listing answered ones, then displayAnswer and isAnswered will be true

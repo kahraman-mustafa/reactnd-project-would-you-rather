@@ -34,7 +34,9 @@ function addUserAction(user){
   }
 }
 
-export function handleAddUser(userName, name, avatarURL){
+export function handleAddUser(userName, name){
+  const avatarURL = "/img/person.svg";
+  
   return (dispatch) => {
 
     dispatch(showLoading());

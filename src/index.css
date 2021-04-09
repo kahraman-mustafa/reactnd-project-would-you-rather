@@ -26,6 +26,12 @@ a {
   text-align: center;
 }
 
+#btn-add-user {
+  width: 20%;
+  margin: auto;
+  margin-top: 24px;
+} 
+
 .push-margin {
   margin: 12px;
 }
@@ -220,6 +226,7 @@ a {
   max-height: 400px;
   padding: 10px;
   border: 1px solid black;
+  margin: auto;
 }
 
 .new-question-title {

@@ -5,6 +5,11 @@ import UserSelectionList from "./UserSelectionList"
 
 class SignInContainer extends Component {
 
+  onAddNewUser = (e) => {
+    e.preventDefault();
+    this.props.history.push(`/add_user`);
+  }
+
   render(){
     const {signedInUser} = this.props;
 
@@ -16,8 +21,9 @@ class SignInContainer extends Component {
     return (
       <div className="signin-container">
         <h3>Welcome to the "Would you Rather" App</h3>
-        <p>Please Sign in to Continue</p>
+        <p className={!signedInUser.id && "warning-text"}>{!signedInUser.id && "In order to use app, "}Please Sign in to Continue</p>
         <UserSelectionList />
+        <button id="btn-add-user" onClick={this.onAddNewUser}>Add New User</button>
       </div>
     )
   }

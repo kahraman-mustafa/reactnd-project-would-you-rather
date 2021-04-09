@@ -7,21 +7,11 @@ import { handleSignIn } from "../../actions/signedInUser";
 class UserSelectionList extends Component {
   
   state = {
-    selectedUserId: null
+    selectedUserId: "sarahedo"
   }
 
   componentDidMount(){
     this.props.dispatch(handleFetchUsers());
-    const userIds = Object.keys(this.props.users);
-    console.log("Users: ", JSON.stringify(userIds));
-
-    this.setState(() => ({
-      selectedUserId: userIds[1]
-    }))
-
-    this.setState(() => ({
-      selectedUserId: userIds[0]
-    }))
   }
 
   changeUser = (e) => {
@@ -44,8 +34,6 @@ class UserSelectionList extends Component {
   render(){
     const {users} = this.props;
 
-    console.log("State: " + this.state.selectedUserId);
-
     return(
       <div>
         <form onSubmit={this.signIn}>
@@ -55,9 +43,9 @@ class UserSelectionList extends Component {
               <option value={userId} key={userId} >{users[userId].name}</option>
             )}
           </select>
-          <input className="push-margin" type="submit" value="Submit" />
+          <input className="push-margin" type="submit" value="Sign In" />
         </form>
-        {(!this.state.selectedUserId && !this.props.signedInUser.id) && <p className="warning-text">Select a user to continue</p>}
+        {(!this.state.selectedUserId) && <p className="warning-text">Select a user</p>}
       </div>
       
     )

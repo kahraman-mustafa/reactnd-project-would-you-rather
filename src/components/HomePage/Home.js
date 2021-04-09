@@ -12,7 +12,6 @@ class Home extends Component {
 
   onFilterByAnswered = (e) => {
     e.preventDefault();
-    console.log("Filter by Answered");
     this.setState((prevState) => ({
       displayAnswered: true
     }))
@@ -20,7 +19,6 @@ class Home extends Component {
 
   onFilterByUnanswered = (e) => {
     e.preventDefault();
-    console.log("Filter by Unanswered");
     this.setState((prevState) => ({
       displayAnswered: false
     }))
@@ -29,9 +27,8 @@ class Home extends Component {
   render() {
     const {signedInUser} = this.props;
 
-    if(typeof(signedInUser.id) === undefined || !signedInUser.id){
+    if(!signedInUser.id){
       this.props.history.push(`/signin`);
-      alert("In order to use app, please sign in");
     }
 
     return(

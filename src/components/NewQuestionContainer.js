@@ -25,7 +25,6 @@ class NewQuestionContainer extends Component {
   onSubmit = (e) => {
     e.preventDefault();
     const {optionOneText, optionTwoText} = this.state;
-    console.log("Options: ", optionOneText + optionTwoText);
     this.props.dispatch(handleAddQuestion(optionOneText, optionTwoText));
     this.props.history.push(`/`);
     alert("New question added to poll!");
@@ -34,9 +33,8 @@ class NewQuestionContainer extends Component {
   render() {
     const {signedInUser} = this.props;
 
-    if(typeof(signedInUser.id) === undefined || !signedInUser.id){
+    if(!signedInUser.id){
       this.props.history.push(`/signin`);
-      alert("In order to use app, please sign in");
     }
 
     const {optionOneText, optionTwoText} = this.state;

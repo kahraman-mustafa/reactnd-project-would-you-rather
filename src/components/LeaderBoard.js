@@ -6,9 +6,8 @@ class LeaderBoard extends Component {
   render() {
     const {signedInUser} = this.props;
 
-    if(typeof(signedInUser.id) === undefined || !signedInUser.id){
+    if(!signedInUser.id){
       this.props.history.push(`/signin`);
-      alert("In order to use app, please sign in");
     }
 
     const {users, ranks, numAnsweredQuestions, numCreatedQuestions, scores} = this.props;
