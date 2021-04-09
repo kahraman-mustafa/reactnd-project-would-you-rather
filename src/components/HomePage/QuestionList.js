@@ -6,9 +6,9 @@ import Question from "./Question";
 class QuestionList extends Component {
 
   render() {
-    const {displayAnswered, answeredQuestionIds, questions} = this.props;
+    const {filterAnswered, answeredQuestionIds, questions} = this.props;
 
-    const displayingQuestionIds =  displayAnswered 
+    const displayingQuestionIds =  filterAnswered 
       ? answeredQuestionIds
       : Object.keys(questions).filter((id) => !answeredQuestionIds.includes(id));
 
@@ -18,7 +18,7 @@ class QuestionList extends Component {
       <ul className="question-list">
         {displayingQuestionIds.map((questionId) => 
           <li className="question-item-container" key={questionId}>
-            <Question questionId={questionId} displayAnswered={displayAnswered}/>
+            <Question questionId={questionId} filterAnswered={filterAnswered} showInPollList={true}/>
           </li>
         )}
       </ul>

@@ -7,20 +7,20 @@ import QuestionList from "./QuestionList";
 class Home extends Component {
 
   state = {
-    displayAnswered: false
+    filterAnswered: false
   }
 
   onFilterByAnswered = (e) => {
     e.preventDefault();
     this.setState((prevState) => ({
-      displayAnswered: true
+      filterAnswered: true
     }))
   }
 
   onFilterByUnanswered = (e) => {
     e.preventDefault();
     this.setState((prevState) => ({
-      displayAnswered: false
+      filterAnswered: false
     }))
   }
 
@@ -31,9 +31,9 @@ class Home extends Component {
         <QuestionFilter 
           onFilterByUnanswered={this.onFilterByUnanswered}
           onFilterByAnswered={this.onFilterByAnswered}
-          displayAnswered={this.state.displayAnswered} />
+          filterAnswered={this.state.filterAnswered} />
         
-        <QuestionList displayAnswered={this.state.displayAnswered} />
+        <QuestionList filterAnswered={this.state.filterAnswered} />
 
       </div>
     )

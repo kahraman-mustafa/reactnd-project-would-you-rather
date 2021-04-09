@@ -3,7 +3,7 @@ import {connect} from "react-redux"
 import { withRouter } from "react-router-dom";
 import { handleAddUser } from "../actions/users"
 
-class AddUser extends Component {
+class SignUp extends Component {
 
   state = {
     userId: "",
@@ -33,12 +33,7 @@ class AddUser extends Component {
   }
 
   render() {
-    const {signedInUser, users} = this.props;
-
-    if(signedInUser.id){
-      alert("Sign out before adding a new user");
-      this.props.history.push(`/`);
-    }
+    const {users} = this.props;
 
     const {userId, name} = this.state;
 
@@ -61,12 +56,8 @@ class AddUser extends Component {
   }
 }
 
-function mapStateToProps({users, signedInUser}){
-
-  return {
-    users,
-    signedInUser
-  }
+function mapStateToProps({users}){
+  return {users}
 }
 
-export default withRouter(connect(mapStateToProps)(AddUser));
+export default withRouter(connect(mapStateToProps)(SignUp));

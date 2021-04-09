@@ -22,26 +22,22 @@ class Question extends Component {
   }
 
   render() {
-    const {isQuestionIdValid, questionURLId, authorName, avatarURL, optionOne, optionTwo, isAnswered} = this.props;
-
-    if(!isQuestionIdValid){
-      return (<div className="question-item"><p className="warning-text">Invalid Question ID</p></div>);
-    }
+    const {showInPollList, authorName, avatarURL, optionOne, optionTwo, isQuestionAnswered} = this.props;
     
     return(
       <div className="question-item">
         <p className="author-asks">
-          {!questionURLId
+          {showInPollList
             ? (`${authorName} asks:`) 
-            : (isAnswered ? (`Asked by ${authorName}:`) : (`${authorName} asks:`))}
+            : (isQuestionAnswered ? (`Asked by ${authorName}:`) : (`${authorName} asks:`))}
         </p>
         <div className="question-item-content">
           <div className="avatar-container">
             <img className="avatar" src={avatarURL} alt="avatar"/>
           </div>
-          {!questionURLId 
+          {showInPollList
             ? (<QuestionDisplay onClickViewPoll={this.onClickViewPoll} optionOne={optionOne}/>) 
-            : (isAnswered 
+            : (isQuestionAnswered 
                 ? (<QuestionResults onClickSubmit={this.onClickSubmit} optionOne={optionOne} optionTwo={optionTwo}/>)
                 : (<QuestionDetail onClickSubmit={this.onClickSubmit} optionOne={optionOne} optionTwo={optionTwo}/>))
           }
@@ -53,60 +49,43 @@ class Question extends Component {
 }
 
 function mapStateToProps({questions, users, answers, signedInUser}, props){
-  // this will try to get question id from URL in case of user written manuelly to address bar
-  const questionURLId = props.match.params.question_id;
+  const questionId = props.questionId;
+  const question = questions[questionId];
 
-  // displayAnswered is sent from QuestionList view according to to filter user clicked
+  const authorId = question.author;
+  const optionOne = question.optionOne;
+  const optionTwo = question.optionTwo;
+
+  const author = users[authorId];
+  const authorName = author.name;
+  const avatarURL = author.avatarURL;
+
+  // filterAnswered is sent from QuestionList view according to to filter user clicked
   // so if user clicked a question while listing answered ones, then displayAnswer and isAnswered will be true
   //    if user clicked a question while listing unanswered ones, then displayAnswer and isAnswered will be false
   // if this component displayed after user wrote the question id manuelly to address bar
   //    then displayAnswer prop will be null and isAnswer will also be
-  let isAnswered = props.displayAnswered;
+  let isQuestionAnswered = props.filterAnswered;
 
-  // questionId is determined by checking if user entered question id to address bar manuelly, 
-  //                       so by checking if questionURLId have a value,
-  // if questionURLId have a value 
-  //    then questionId will be that value,
-  // if questionURLId does not have a value, it means question is displayed by clicking from question list,
-  //    then questionId will be assigned from questionId prop value provided when clicking from question list 
-  const questionId = questionURLId ? questionURLId : props.questionId;
+  // this i,ndicates that whether the question item will be shown in poll list or at another page itself
+  const showInPollList = props.showInPollList;
 
-  const question = questions[questionId];
-  
-  // if questionId is valid, then question object will have a value
-  // if questionId is not valid, then question object won't have a value
-  const isQuestionIdValid = question ? true : false;
-
-  // if the question tried to display is valid, required attributes will be fetched from store
-  if(isQuestionIdValid){
-    // if this component displayed after user wrote the question id manuelly then questionURLId will have value
-    // then it will be checked that whether the question is answered by signed in user or not
-    // then isAnswered variable will be overwritten
-    if(questionURLId){
-      const userAnswersIds = Object.keys(answers).filter((answerId) => answers[answerId].userId === signedInUser.id);
-      const answeredQuestionIds = userAnswersIds.map((answerId) => answers[answerId].questionId);
-      isAnswered = answeredQuestionIds.includes(questionURLId);
-    }
-
-    const authorId = question.author;
-    const optionOne = question.optionOne;
-    const optionTwo = question.optionTwo;
-
-    const author = users[authorId];
-    const authorName = author.name;
-    const avatarURL = author.avatarURL;
-
-    return {questionId, questionURLId, authorName, avatarURL, optionOne, optionTwo, isAnswered, isQuestionIdValid, signedInUser}
-  } 
-  // if the question tried to display is invalid, then only this information will be assigned to props to show warning message
-  else {
-    return {isQuestionIdValid, signedInUser}
+  // if this component displayed after user wrote the question id manuelly then questionURLId will have value
+  // then it will be checked that whether the question is answered by signed in user or not
+  // then isQuestionAnswered variable will be overwritten
+  if(!showInPollList){
+    const userAnswersIds = Object.keys(answers).filter((answerId) => answers[answerId].userId === signedInUser.id);
+    const answeredQuestionIds = userAnswersIds.map((answerId) => answers[answerId].questionId);
+    isQuestionAnswered = answeredQuestionIds.includes(questionId);
   }
+
+  return {questionId, showInPollList, authorName, avatarURL, optionOne, optionTwo, isQuestionAnswered, signedInUser}
 }
 
 Question.propTypes = {
-  questionId: PropTypes.string,
-  displayAnswered: PropTypes.bool
+  questionId: PropTypes.string.isRequired,
+  showInPollList: PropTypes.bool.isRequired,
+  filterAnswered: PropTypes.bool
 }
 
 export default withRouter(connect(mapStateToProps)(Question));
