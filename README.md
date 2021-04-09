@@ -1,6 +1,10 @@
 # Would You Rather Project
 
-This is the starter code for the final assessment project for Udacity's React & Redux course.
+This is the final version of assessment project for Udacity's React & Redux course, prepared by Mustafa Kahraman.
+
+The provided `_DATA.js` file renamed as `_DATA_provided` and not used. It is refactored to normalize data as the provided objects treated like a database table. All informations stayed same but construction of dara objects changed and used in that way.
+
+I have provided additional functionality to add user to the system. I moved img folder to public folder. In order to better organize, I added subfolder in components folder.
 
 The `_DATA.js` file represents a fake database and methods that let you access the data. The only thing you need to edit in the ` _DATA.js` file is the value of `avatarURL`. Each user should have an avatar, so you’ll need to add the path to each user’s avatar.
 
@@ -8,10 +12,11 @@ Using the provided starter code, you'll build a React/Redux front end for the ap
 
 ## Data
 
-There are two types of objects stored in our database:
+There are three types of objects stored in my refactored database:
 
 * Users
 * Questions
+* Answers
 
 ### Users
 
@@ -22,8 +27,6 @@ Users include:
 | id                 | String           | The user’s unique identifier |
 | name          | String           | The user’s first name  and last name     |
 | avatarURL  | String           | The path to the image file |
-| questions | Array | A list of ids of the polling questions this user created|
-| answers      | Object         |  The object's keys are the ids of each question this user answered. The value of each key is the answer the user selected. It can be either `'optionOne'` or `'optionTwo'` since each question has two options.
 
 ### Questions
 
@@ -37,6 +40,13 @@ Questions include:
 | optionOne | Object | The first voting option|
 | optionTwo | Object | The second voting option|
 
+### Answers
+
+| id                 | String           | The answer’s unique identifier |
+| userId          | String           | The user’s id who voted the answer     |
+| questionId  | String           | The question's unique identifier that is voted |
+| vote | String | It can be either `'optionOne'` or `'optionTwo'` since each question has two options.|
+
 ### Voting Options
 
 Voting options are attached to questions. They include:
@@ -46,12 +56,14 @@ Voting options are attached to questions. They include:
 | votes             | Array | A list that contains the id of each user who voted for that option|
 | text                | String | The text of the option |
 
-Your code will talk to the database via 4 methods:
+My code will talk to the database via 6 methods, I added and rearranged provided ones:
 
 * `_getUsers()`
 * `_getQuestions()`
+* `_getAnswers()` : Added
 * `_saveQuestion(question)`
-* `_saveQuestionAnswer(object)`
+* `_saveAnswer(answer)`
+* `_saveUser(user)` : Added
 
 1) `_getUsers()` Method
 
