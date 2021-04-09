@@ -53,7 +53,7 @@ class AddUser extends Component {
               <input type="text" id="userId" name="userId" placeholder="Enter username" onChange={this.onChangeUserId}/><br/>
               {Object.keys(users).filter((id) => id === userId).length > 0 && <p className="warning-text">Username exist, try another one</p>}
               <input type="text" id="name" name="name" placeholder="Enter name and surname" onChange={this.onChangeName}/><br/>
-              <input type="submit" value="Submit" disabled={(Object.keys(users).filter((id) => id === userId).length > 0 || !userId || !name)}/>
+              <input type="submit" value="Add User" disabled={(Object.keys(users).filter((id) => id === userId).length > 0 || !userId || !name)}/>
             </form>
           </div>
       </div>
